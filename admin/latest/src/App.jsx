@@ -7,7 +7,7 @@ import List from "../src/pages/List/List";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
-  const url = "https://full-stack-1f9p.onrender.com/";
+  const url = "https://full-stack-1f9p.onrender.com";
   return (
     <div>
       <ToastContainer />
