@@ -1,0 +1,48 @@
+.contactus-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .contactus-form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contactus-form-title {
+    margin-bottom: 20px;
+  }
+  
+  .contactus-form-title h2 {
+    margin: 0;
+  }
+  
+  .contactus-form-inputs input,
+  .contactus-form-inputs textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .contactus-form-inputs textarea {
+    resize: vertical;
+  }
+  
+  .contactus-form button {
+    padding: 10px;
+    background: tomato;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  
