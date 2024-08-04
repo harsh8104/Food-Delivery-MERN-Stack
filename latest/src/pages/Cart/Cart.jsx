@@ -18,7 +18,7 @@ const Cart = () => {
   const [isCouponCodeTrue, setIsCouponCodeTrue] = useState(false);
   const onChangeHandler = (e) => {
     const code = e.target.value;
-    if (code === "FIRST-50") {
+    if (code === "FIRST-ORDER") {
       setDeliveryFee(0);
       setIsCouponCodeTrue(true);
     }
