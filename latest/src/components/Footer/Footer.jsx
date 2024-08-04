@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import { assets } from "../../assets/assets";
+import { Link, useNavigate } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="footer" id="footer">
@@ -34,7 +35,7 @@ const Footer = () => {
           <ul>
             <li>+91 1234567890</li>
             <li>contact@service.com</li>
-            <li>Contact us</li>
+            <Link to="/contact-us">Contact us</Link>
           </ul>
         </div>
       </div>
