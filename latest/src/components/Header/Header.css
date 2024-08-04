@@ -12,7 +12,8 @@
  object-fit:cover; 
  z-index: 0;
  right: 0;
- left: 0; 
+ left: 0;
+    border-radius:20px;
   }
 .header-content{
     position: absolute;
