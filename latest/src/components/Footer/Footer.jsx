@@ -35,7 +35,7 @@ const Footer = () => {
           <ul>
             <li>+91 1234567890</li>
             <li>contact@service.com</li>
-            <Link to="/contact-us">Contact us</Link>
+            <li><Link to="/contact-us">Contact us</Link></li>
           </ul>
         </div>
       </div>
