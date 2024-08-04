@@ -37,3 +37,21 @@
 .place-order .cart-total button{
     margin-top: 30px;
 }
+
+@media (max-width:1050px){
+    .place-order{
+        display:block;
+    }
+}
+
+@media (max-width:900px){
+   .place-order{
+        display:block;
+    }
+}
+
+@media (max-width:750px){
+    .place-order{
+        display:block;
+    }
+}
