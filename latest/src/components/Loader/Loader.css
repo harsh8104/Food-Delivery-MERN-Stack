@@ -6,3 +6,39 @@
     left: 50%;
     right: 50%;
 }
+
+@media (max-width:1050px){
+    .food-loader{
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+}
+
+}
+
+@media (max-width:900px){
+    .food-loader{
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+}
+
+}
+
+@media (max-width:750px){
+    .food-loader{
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+}
+
+}
