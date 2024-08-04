@@ -79,7 +79,7 @@ const ContactUs = async (req, res) => {
                 <p>Best regards,<br>Quick Byte</p>
             </div>
             <div class="email-footer">
-                <p><a href="https://yourcompanywebsite.com">Visit our website</a></p>
+                <p><a href="https://full-stack-frontend-olt1.onrender.com">Visit our website</a></p>
             </div>
         </div>
     </body>
