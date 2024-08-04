@@ -186,7 +186,7 @@ const verifyAccount = async (req, res) => {
         </div>
         <div class="email-footer">
             <p>Best regards,<br>Quick Byte</p>
-            <p><a href="https://yourcompanywebsite.com">Visit our website</a></p>
+            <p><a href="https://full-stack-frontend-olt1.onrender.com">Visit our website</a></p>
         </div>
     </div>
 </body>
