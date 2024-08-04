@@ -160,7 +160,7 @@ const verifyOrder = async (req, res) => {
                 <p>Thank you for choosing [Quick Byte]!</p>
             </div>
             <div class="email-footer">
-                <p><a href="https://yourcompanywebsite.com">Visit our website</a> | <a href="https://yourcompanywebsite.com/orders">Track your order</a></p>
+                <p><a href="https://full-stack-frontend-olt1.onrender.com">Visit our website</a> | <a href="https://full-stack-frontend-olt1.onrender.com/myorders">Track your order</a></p>
                 <p>&copy; ${new Date().getFullYear()} [Quick Byte]. All rights reserved.</p>
             </div>
         </div>
