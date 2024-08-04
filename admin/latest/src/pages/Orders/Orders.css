@@ -29,7 +29,29 @@
     outline: none;
     font-size: 11px;
 }
+.spinner{
+    margin: 0 auto;
+    width: 40px;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    place-self: center;
+}
+.spin{
+    width: 65px;
+    height: 65px;
+    place-self: center;
+    border: 5px solid #bdbdbd;
+    border-top-color: tomato;
+    border-radius: 50%;
+    animation :rotate 2s infinite
+}
 
+@keyframes rotate {
+    100%{
+        transform: rotate(360deg);
+    }
+}
 @media (max-width:1000px) {
     .order-item{
         font-size: 12px;
