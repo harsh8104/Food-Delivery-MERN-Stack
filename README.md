@@ -13,7 +13,6 @@
 - [Dependencies](#dependencies)
 - [Configuration](#configuration)
 - [Contributors](#contributors)
-- [License](#license)
 
 ## Features
 - User-friendly interface for browsing and ordering food.
