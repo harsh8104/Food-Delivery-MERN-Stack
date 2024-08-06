@@ -27,6 +27,7 @@ const LoginPopUp = ({ setShowLogin }) => {
     if (currState === "Login") {
       newUrl += "/api/user/login";
       const response = await axios.post(newUrl, data);
+
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
@@ -35,7 +36,7 @@ const LoginPopUp = ({ setShowLogin }) => {
         localStorage.setItem("avatar", response.data.avatar);
         toast.success("Login Successfull");
       } else {
-        toast.error("Login error");
+        toast.error(response.data.message);
         setShowLogin(false);
       }
     } else {
