@@ -16,12 +16,18 @@ const OTP = ({ data }) => {
     let newUrl = url;
     newUrl += "/api/user/register";
     response = await axios.post(newUrl, data);
-    newUrl = url;
-    newUrl += "/api/user/verifyemail";
-    const otpResponse = await axios.post(newUrl, {
-      email: data.email,
-    });
-    userOTP = otpResponse.data.newUser.OTP;
+    if (response.status == 203) {
+      toast.error(response.data.message);
+      setShowOtp(false);
+    }
+    if (response.data.success) {
+      newUrl = url;
+      newUrl += "/api/user/verifyemail";
+      const otpResponse = await axios.post(newUrl, {
+        email: data.email,
+      });
+      userOTP = otpResponse.data.newUser.OTP;
+    }
   };
   useEffect(() => {
     handleAPI();
