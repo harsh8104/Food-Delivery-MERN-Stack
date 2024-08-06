@@ -15,13 +15,13 @@ const loginUser = async (req, res) => {
     const user = await userModel.findOne({ email });
     if (!user) {
       return res
-        .status(400)
+        .status(203)
         .json({ message: "User Doesn't Exist", success: false });
     }
     const isPasswordTrue = await bcrypt.compare(password, user.password);
     if (!isPasswordTrue) {
       return res
-        .status(400)
+        .status(203)
         .json({ message: "Password is incorrect", success: false });
     }
     const token = createToken(user._id);
@@ -43,17 +43,17 @@ const registerUser = async (req, res) => {
 
     const user = await userModel.findOne({ email });
     if (user) {
-      return res.status(401).json({
+      return res.status(203).json({
         message: "User already exists",
         success: false,
       });
     }
 
     if (!validator.isEmail(email)) {
-      return res.status(401).json({ message: "Invalid email", success: false });
+      return res.status(203).json({ message: "Invalid email", success: false });
     }
     if (password.length < 8) {
-      return res.status(401).json({
+      return res.status(203).json({
         message: "Please enter a strong password",
         success: false,
       });
@@ -186,7 +186,7 @@ const verifyAccount = async (req, res) => {
         </div>
         <div class="email-footer">
             <p>Best regards,<br>Quick Byte</p>
-            <p><a href="https://full-stack-frontend-olt1.onrender.com">Visit our website</a></p>
+            <p><a href="https://yourcompanywebsite.com">Visit our website</a></p>
         </div>
     </div>
 </body>
