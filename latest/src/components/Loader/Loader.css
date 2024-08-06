@@ -7,38 +7,23 @@
     right: 50%;
 }
 
-@media (max-width:1050px){
-    .food-loader{
-    height: 90px;
-    width: 90px;
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    right: 50%;
-}
+.container{
+    min-height: 500px;
+    min-width: 500px;
 
 }
 
-@media (max-width:900px){
-    .food-loader{
-    height: 90px;
-    width: 90px;
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    right: 50%;
-}
+.food-loader {
+    right: 0;
+    left: 0;
+    display: block;
+    margin: 0 auto;
 
-}
-
-@media (max-width:750px){
-    .food-loader{
-    height: 90px;
-    width: 90px;
-    border-radius: 50%;
-    position: absolute;
-    left: 50%;
-    right: 50%;
-}
-
-}
+     }
+.container{
+        display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+     }
