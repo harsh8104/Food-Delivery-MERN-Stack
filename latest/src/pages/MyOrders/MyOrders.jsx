@@ -5,8 +5,8 @@ import axios from "axios";
 import { assets } from "../../assets/assets";
 const MyOrders = () => {
   const [data, setData] = useState([]);
-  const { url, token, loader, setLoader } = useContext(StoreContext);
-
+  const { url, token } = useContext(StoreContext);
+  const [loading, setLoading] = useState(true);
   const fetchOrders = async () => {
     const response = await axios.post(
       url + "/api/order/userorders",
@@ -16,16 +16,17 @@ const MyOrders = () => {
       }
     );
     setData(response.data.data);
+    setLoading(false);
   };
   useEffect(() => {
     if (token) {
       fetchOrders();
     }
   }, [token]);
-  if (data.length <= 0) {
+  if (loading) {
     return (
       <div className="verify">
-        <div className="spinner"></div>
+        <div className="spinner">{console.log("Worked")}</div>
       </div>
     );
   } else {
