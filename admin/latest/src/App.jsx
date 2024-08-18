@@ -6,8 +6,9 @@ import Orders from "../src/pages/Orders/Orders";
 import List from "../src/pages/List/List";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminChat from "./Components/AdminChat/AdminChat";
 function App() {
-  const url = "https://full-stack-1f9p.onrender.com";
+  const url = "http://localhost:5000";
   return (
     <div>
       <ToastContainer />
@@ -19,6 +20,7 @@ function App() {
           <Route path="/add" element={<Add url={url} />} />
           <Route path="/orders" element={<Orders url={url} />} />
           <Route path="/list" element={<List url={url} />} />
+          <Route path="/chat" element={<AdminChat />} />
         </Routes>
       </div>
     </div>
