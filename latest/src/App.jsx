@@ -13,6 +13,7 @@ import MyOrders from "./pages/MyOrders/MyOrders.jsx";
 import LoginError from "./pages/LoginError/LoginError.jsx";
 import ContactUs from "./components/ContactUs/ContactUs.jsx";
 import OTP from "./components/OTP/OTP.jsx";
+import UserChat from "./components/UserChat/UserChat.jsx";
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/loginerror" element={<LoginError />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/verify-email" element={<OTP />} />
+          <Route path="/chat" element={<UserChat />} />
         </Routes>
       </div>
       <Footer />
