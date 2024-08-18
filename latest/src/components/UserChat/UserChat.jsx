@@ -81,7 +81,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const UserChat = () => {
-  const socket = useMemo(() => io("http://localhost:5000"), []);
+  const socket = useMemo(() => io("https://full-stack-1f9p.onrender.com"), []);
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
 
