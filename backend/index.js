@@ -28,6 +28,34 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-app.listen(port, () => {
+//socket.io
+
+import { Server } from "socket.io";
+import { createServer } from "http";
+
+const server = createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("User Connected:", socket.id);
+
+  socket.on("send-message", ({ message, sender, timestamp }) => {
+    // console.log(`Message from ${sender}: ${message}`);
+    io.emit("receive-message", { message, sender, timestamp });
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected:", socket.id);
+  });
+});
+
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
