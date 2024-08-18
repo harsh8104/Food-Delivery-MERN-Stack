@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 import { IoBag } from "react-icons/io5";
 import Badge from "@mui/material/Badge";
+import UserChat from "../UserChat/UserChat.jsx";
 const Navbar = ({ setShowLogin }) => {
   const { token, setToken, getTotalCartItems, avatar } =
     useContext(StoreContext);
@@ -50,6 +51,7 @@ const Navbar = ({ setShowLogin }) => {
         >
           Contact-Us
         </Link>
+        <Link to="/chat">Chat with us</Link>
       </ul>
       <div className="navbar-right">
         <IoSearchSharp size={35} />
