@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminChat from "./Components/AdminChat/AdminChat";
 function App() {
-  const url = "http://localhost:5000";
+  const url = "https://full-stack-1f9p.onrender.com";
   return (
     <div>
       <ToastContainer />
