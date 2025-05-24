@@ -4,9 +4,11 @@ import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { IoCloseSharp } from "react-icons/io5";
 const OTP = ({ data }) => {
   const [showOTP, setShowOtp] = useState(true);
   const { url, setToken, setAvatar } = useContext(StoreContext);
+  const [loading, setLoading] = useState(false);
   let otp, userOTP;
   let response;
   const onChangeHandler = (e) => {
@@ -34,10 +36,12 @@ const OTP = ({ data }) => {
   }, []);
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     if (userOTP == otp) {
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       setAvatar(response.data.avatar);
+      setLoading(false);
       setShowOtp(false);
       localStorage.setItem("avatar", response.data.avatar);
       toast.success("Account Created Successfully");
@@ -57,10 +61,10 @@ const OTP = ({ data }) => {
         <form onSubmit={handleSubmit} className="otp-popup-container">
           <div className="otp-popup-title">
             <h2>OTP Verification</h2>
-            <img
+            <IoCloseSharp
+              height="25px"
+              width="25px"
               onClick={() => setShowOtp(false)}
-              src={assets.cross_icon}
-              alt=""
             />
           </div>
           <div className="otp-popup-inputs">
@@ -72,7 +76,9 @@ const OTP = ({ data }) => {
               required
             />
           </div>
-          <button type="submit">Verify OTP</button>
+          <button type="submit">
+            {loading ? <h5>Processing</h5> : <h5>Verify OTP</h5>}
+          </button>
           <div className="otp-popup-resend">
             <p>
               Didn't receive the OTP? <span>Resend OTP</span>
