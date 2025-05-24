@@ -14,6 +14,7 @@ import LoginError from "./pages/LoginError/LoginError.jsx";
 import ContactUs from "./components/ContactUs/ContactUs.jsx";
 import OTP from "./components/OTP/OTP.jsx";
 import UserChat from "./components/UserChat/UserChat.jsx";
+import TrackOrder from "./components/TrackOrder/TrackOrder.jsx";
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/verify-email" element={<OTP />} />
           <Route path="/chat" element={<UserChat />} />
+          <Route path="/track-order" element={<TrackOrder />} />
         </Routes>
       </div>
       <Footer />
