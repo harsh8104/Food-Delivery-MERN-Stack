@@ -2,11 +2,25 @@ import React, { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 const TrackOrder = () => {
   const mapRef = useRef(null);
   const pathLineRef = useRef(null);
   const distanceLabelRef = useRef(null);
-  const customerMarkerRef = useRef(null);
+  const userLocationRef = useRef(null);
 
   const providerLocation = { lat: 22.19, long: 71.6667 };
 
@@ -44,12 +58,28 @@ const TrackOrder = () => {
           const lat = position.coords.latitude;
           const long = position.coords.longitude;
 
-          if (customerMarkerRef.current) {
-            customerMarkerRef.current.setLatLng([lat, long]);
+          if (userLocationRef.current) {
+            userLocationRef.current.setLatLng([lat, long]);
           } else {
-            customerMarkerRef.current = L.marker([lat, long])
-              .addTo(mapRef.current)
-              .bindTooltip("You", { permanent: true, direction: "top" });
+            userLocationRef.current = L.marker([lat, long], {
+              icon: L.divIcon({
+                className: "user-location-marker",
+                html: `<div style="
+                  background: #4285f4;
+                  color: white;
+                  padding: 6px 10px;
+                  border-radius: 20px;
+                  font-weight: 600;
+                  font-size: 12px;
+                  text-align: center;
+                  border: 2px solid white;
+                  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+                  white-space: nowrap;
+                ">You</div>`,
+                iconSize: [40, 25],
+                iconAnchor: [20, 12],
+              }),
+            }).addTo(mapRef.current);
           }
 
           if (pathLineRef.current)
@@ -60,7 +90,7 @@ const TrackOrder = () => {
               [providerLocation.lat, providerLocation.long],
               [lat, long],
             ],
-            { color: "red" }
+            { color: "red", weight: 3 }
           ).addTo(mapRef.current);
 
           if (distanceLabelRef.current)
@@ -80,21 +110,25 @@ const TrackOrder = () => {
             icon: L.divIcon({
               className: "distance-label",
               html: `<div style="
-  
-  padding: 8px 12px;
-  font-weight: 600;
-
-  
- 
-  font-size: 14px;
-  line-height: 1.4;
-">
-  ${dist} km
-</div>`,
+                background: white;
+                padding: 8px 12px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 1.4;
+                border-radius: 6px;
+                border: 2px solid #red;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                text-align: center;
+                color: #333;
+              ">${dist} km</div>`,
+              iconSize: [80, 30],
+              iconAnchor: [40, 15],
             }),
           }).addTo(mapRef.current);
 
-          mapRef.current.fitBounds(pathLineRef.current.getBounds());
+          mapRef.current.fitBounds(pathLineRef.current.getBounds(), {
+            padding: [20, 20],
+          });
         },
         (error) => {
           console.error("Geolocation error:", error);
