@@ -6,6 +6,7 @@ import { StoreContext } from "../../context/StoreContext";
 import { toast } from "react-toastify";
 import axios from "axios";
 import OTP from "../OTP/OTP.jsx";
+import { IoCloseSharp } from "react-icons/io5";
 const LoginPopUp = ({ setShowLogin }) => {
   const [showOTP, setShowOTP] = useState(false);
   const [currState, setCurrState] = useState("Sign Up");
@@ -15,6 +16,7 @@ const LoginPopUp = ({ setShowLogin }) => {
     password: "",
   });
   const { url, setToken, setAvatar } = useContext(StoreContext);
+  const [loading, setLoading] = useState(false);
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -25,6 +27,7 @@ const LoginPopUp = ({ setShowLogin }) => {
     event.preventDefault();
     let newUrl = url;
     if (currState === "Login") {
+      setLoading(true);
       newUrl += "/api/user/login";
       const response = await axios.post(newUrl, data);
 
@@ -35,9 +38,11 @@ const LoginPopUp = ({ setShowLogin }) => {
         setAvatar(response.data.avatar);
         localStorage.setItem("avatar", response.data.avatar);
         toast.success("Login Successfull");
+        setLoading(false);
       } else {
         toast.error(response.data.message);
         setShowLogin(false);
+        setLoading(false);
       }
     } else {
       setShowOTP(true);
@@ -53,10 +58,10 @@ const LoginPopUp = ({ setShowLogin }) => {
       <form onSubmit={onLogin} className="login-popup-container">
         <div className="login-popup-title">
           <h2>{currState}</h2>
-          <img
+          <IoCloseSharp
+            height="25px"
+            width="25px"
             onClick={() => setShowLogin(false)}
-            src={assets.cross_icon}
-            alt=""
           />
         </div>
         <div className="login-popup-inputs">
@@ -90,7 +95,13 @@ const LoginPopUp = ({ setShowLogin }) => {
           />
         </div>
         <button type="submit">
-          {currState === "Sign Up" ? "Create Account" : "Login "}
+          {loading ? (
+            <h5>Processing...</h5>
+          ) : currState === "Sign Up" ? (
+            "Create Account"
+          ) : (
+            "Login "
+          )}
         </button>
         <div className="login-popup-condition">
           <input type="checkbox" required />
