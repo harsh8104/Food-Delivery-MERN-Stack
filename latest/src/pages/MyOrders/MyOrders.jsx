@@ -3,10 +3,15 @@ import "./MyOrders.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { assets } from "../../assets/assets";
+import { useNavigate } from "react-router-dom";
 const MyOrders = () => {
   const [data, setData] = useState([]);
   const { url, token } = useContext(StoreContext);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const handleOrderTrack = () => {
+    navigate("/track-order");
+  };
   const fetchOrders = async () => {
     const response = await axios.post(
       url + "/api/order/userorders",
@@ -26,7 +31,7 @@ const MyOrders = () => {
   if (loading) {
     return (
       <div className="verify">
-        <div className="spinner">{console.log("Worked")}</div>
+        <div className="spinner"></div>
       </div>
     );
   } else {
@@ -54,7 +59,10 @@ const MyOrders = () => {
                     <span>&#x25cf;</span>
                     <b>{order.status}</b>
                   </p>
-                  <button>Track Order</button>
+                  {(order.status === "Food Processing" ||
+                    order.status === "Out for delivery") && (
+                    <button onClick={handleOrderTrack}>Track Order</button>
+                  )}
                 </div>
               );
             })}
