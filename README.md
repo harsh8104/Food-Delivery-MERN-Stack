@@ -429,21 +429,15 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 <table>
 <tr>
 <td align="center" width="33%">
-<img src="https://via.placeholder.com/200x300/FF6B6B/FFFFFF?text=Mobile" alt="Mobile View" style="border-radius: 10px;">
+<img src="https://res.cloudinary.com/dldpwhnad/image/upload/v1750274282/Screenshot_2025-06-19_004650_xqshwn.png" alt="Mobile View" style="border-radius: 10px;">
 <br><b>📱 Mobile Optimized</b>
 <br>Touch-friendly interface
 <br>Collapsible navigation
 <br>Streamlined layout
 </td>
+
 <td align="center" width="33%">
-<img src="https://via.placeholder.com/300x200/4ECDC4/FFFFFF?text=Tablet" alt="Tablet View" style="border-radius: 10px;">
-<br><b>📟 Tablet Friendly</b>
-<br>Adaptive layout
-<br>Reorganized components
-<br>Enhanced usability
-</td>
-<td align="center" width="33%">
-<img src="https://via.placeholder.com/400x200/45B7D1/FFFFFF?text=Desktop" alt="Desktop View" style="border-radius: 10px;">
+<img src="https://res.cloudinary.com/dldpwhnad/image/upload/v1750273504/Screenshot_2025-06-19_003440_zgadls.png" alt="Desktop View" style="border-radius: 10px;">
 <br><b>🖥️ Desktop Full-Featured</b>
 <br>Complete interface
 <br>Enhanced visuals
