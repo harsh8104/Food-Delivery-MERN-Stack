@@ -54,7 +54,6 @@ const Navbar = ({ setShowLogin }) => {
         <Link to="/chat">Chat with us</Link>
       </ul>
       <div className="navbar-right">
-        <IoSearchSharp size={35} />
         <div className="navbar-search-icon">
           <Link to="/cart">
             <Badge badgeContent={getTotalCartItems()} color="primary">
