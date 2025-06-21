@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import "./Cart.css";
 import { useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
 import ConfettiExplosion from "react-confetti-explosion";
+import axios from "axios";
+import { toast } from "react-toastify";
 const bigExplodeProps = {
   force: 0.6,
   duration: 5000,
@@ -15,20 +17,42 @@ const bigExplodeProps = {
 
 const Cart = () => {
   const [isExploding, setIsExploding] = useState(false);
+  const [code, setCode] = useState("");
   const [isCouponCodeTrue, setIsCouponCodeTrue] = useState(false);
+  const [data, setData] = useState([]);
+  const { url, token } = useContext(StoreContext);
+  const fetchOrders = async () => {
+    const response = await axios.post(
+      url + "/api/order/userorders",
+      {},
+      {
+        headers: { token },
+      }
+    );
+    setData(response.data.data);
+    return response.data.data;
+  };
   const onChangeHandler = (e) => {
     const code = e.target.value;
-    if (code === "FIRST-ORDER") {
+    setCode(code);
+  };
+  const handleClick = async () => {
+    const orderData = await fetchOrders();
+    console.log(data);
+    if (code === "FIRST-ORDER" && orderData.length === 0) {
       setDeliveryFee(0);
       setIsCouponCodeTrue(true);
+    } else {
+      toast.error("This code is only valid for first order");
+      setIsCouponCodeTrue(false);
     }
+    setIsExploding(!isExploding);
   };
   const {
     cartItems,
     food_list,
     removeFromCart,
     getTotalCartAmount,
-    url,
     getTotalCartItems,
     deliveryFee,
     setDeliveryFee,
@@ -53,7 +77,7 @@ const Cart = () => {
             {food_list.map((item, index) => {
               if (cartItems[item._id] > 0) {
                 return (
-                  <div>
+                  <div key={index}>
                     <div className="cart-items-title cart-items-item">
                       <img src={url + "/images/" + item.img} alt="" />
                       <p>{item.name}</p>
@@ -111,10 +135,7 @@ const Cart = () => {
                     onChange={onChangeHandler}
                   />
                   <div>
-                    <button
-                      type="button"
-                      onClick={() => setIsExploding(!isExploding)}
-                    >
+                    <button type="button" onClick={handleClick}>
                       {isExploding && isCouponCodeTrue && (
                         <div>
                           <ConfettiExplosion {...bigExplodeProps} />
