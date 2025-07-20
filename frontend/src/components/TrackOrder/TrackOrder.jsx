@@ -22,7 +22,7 @@ const TrackOrder = () => {
   const distanceLabelRef = useRef(null);
   const userLocationRef = useRef(null);
 
-  const providerLocation = { lat: 22.19, long: 71.6667 };
+  const providerLocation = { lat: 23.1370, long: 72.5360 };
 
   const getDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371;
