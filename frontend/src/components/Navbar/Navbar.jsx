@@ -1,12 +1,10 @@
-import React, { useContext, useState } from "react";
-import { IoSearchSharp } from "react-icons/io5";
+import { useContext, useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 import { IoBag } from "react-icons/io5";
 import Badge from "@mui/material/Badge";
-import UserChat from "../UserChat/UserChat.jsx";
 const Navbar = ({ setShowLogin }) => {
   const { token, setToken, getTotalCartItems, avatar } =
     useContext(StoreContext);
@@ -49,9 +47,22 @@ const Navbar = ({ setShowLogin }) => {
           onClick={() => setMenu("Contact-Us")}
           className={menu === "Contact-Us" ? "active" : ""}
         >
-          Contact-Us
+          Contact-us
         </Link>
-        <Link to="/chat">Chat with us</Link>
+        <Link
+          to="/chat"
+          onClick={() => setMenu("Chat")}
+          className={menu === "Chat" ? "active" : ""}
+        >
+          Chat with us
+        </Link>
+        <Link
+          to="/locate-us"
+          onClick={() => setMenu("Locate")}
+          className={menu === "Locate" ? "active" : ""}
+        >
+          Locate-us
+        </Link>
       </ul>
       <div className="navbar-right">
         <div className="navbar-search-icon">

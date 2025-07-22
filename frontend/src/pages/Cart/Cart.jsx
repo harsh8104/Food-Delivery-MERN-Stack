@@ -57,6 +57,7 @@ const Cart = () => {
     deliveryFee,
     setDeliveryFee,
     cartLoading,
+    convertUSDToINR,
   } = useContext(StoreContext);
   const navigate = useNavigate();
   if (getTotalCartItems() > 0) {
@@ -81,9 +82,11 @@ const Cart = () => {
                     <div className="cart-items-title cart-items-item">
                       <img src={url + "/images/" + item.img} alt="" />
                       <p>{item.name}</p>
-                      <p>${item.price}</p>
+                      <p>₹{convertUSDToINR(item.price)}</p>
                       <p>{cartItems[item._id]}</p>
-                      <p>${item.price * cartItems[item._id]}</p>
+                      <p>
+                        ₹{convertUSDToINR(item.price * cartItems[item._id])}
+                      </p>
                       <p
                         className="cross"
                         onClick={() => removeFromCart(item._id)}
@@ -103,21 +106,26 @@ const Cart = () => {
               <div>
                 <div className="cart-total-details">
                   <p>Subtotal</p>
-                  <p>${getTotalCartAmount()}</p>
+                  <p>₹{convertUSDToINR(getTotalCartAmount())}</p>
                 </div>
                 <hr />
                 <div className="cart-total-details">
                   <p>Delivery Fee</p>
-                  <p>${getTotalCartAmount() === 0 ? 0 : deliveryFee}</p>
+                  <p>
+                    ₹
+                    {getTotalCartAmount() === 0
+                      ? 0
+                      : convertUSDToINR(deliveryFee)}
+                  </p>
                 </div>
                 <hr />
                 <div className="cart-total-details">
                   <b>Total</b>
                   <b>
-                    $
+                    ₹
                     {getTotalCartAmount() === 0
                       ? 0
-                      : getTotalCartAmount() + deliveryFee}
+                      : convertUSDToINR(getTotalCartAmount() + deliveryFee)}
                   </b>
                 </div>
               </div>

@@ -16,13 +16,13 @@ L.Icon.Default.mergeOptions({
   shadowSize: [41, 41],
 });
 
-const TrackOrder = () => {
+const LocateUs = () => {
   const mapRef = useRef(null);
   const pathLineRef = useRef(null);
   const distanceLabelRef = useRef(null);
   const userLocationRef = useRef(null);
 
-  const providerLocation = { lat: 23.1370, long: 72.5360 };
+  const providerLocation = { lat: 23.137, long: 72.536 };
 
   const getDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371;
@@ -116,7 +116,7 @@ const TrackOrder = () => {
                 font-size: 14px;
                 line-height: 1.4;
                 border-radius: 6px;
-                border: 2px solid #red;
+                border: 2px solid red;
                 box-shadow: 0 2px 8px rgba(0,0,0,0.15);
                 text-align: center;
                 color: #333;
@@ -145,4 +145,4 @@ const TrackOrder = () => {
   return <div id="map" style={{ height: "100vh", width: "100%" }} />;
 };
 
-export default TrackOrder;
+export default LocateUs;

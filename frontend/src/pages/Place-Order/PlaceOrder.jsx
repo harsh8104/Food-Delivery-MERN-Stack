@@ -5,8 +5,15 @@ import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount, token, food_list, cartItems, url, deliveryFee } =
-    useContext(StoreContext);
+  const {
+    getTotalCartAmount,
+    token,
+    food_list,
+    cartItems,
+    url,
+    deliveryFee,
+    convertUSDToINR,
+  } = useContext(StoreContext);
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -37,6 +44,7 @@ const PlaceOrder = () => {
       address: data,
       items: orderItems,
       amount: getTotalCartAmount() + deliveryFee,
+      deliveryFee: deliveryFee,
     };
     let response = await axios.post(url + "/api/order/place", orderData, {
       headers: { token },
@@ -145,21 +153,23 @@ const PlaceOrder = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>₹{convertUSDToINR(getTotalCartAmount())}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount() === 0 ? 0 : deliveryFee}</p>
+              <p>
+                ₹{getTotalCartAmount() === 0 ? 0 : convertUSDToINR(deliveryFee)}
+              </p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Toal</b>
               <b>
-                $
+                ₹
                 {getTotalCartAmount() === 0
                   ? 0
-                  : getTotalCartAmount() + deliveryFee}
+                  : convertUSDToINR(getTotalCartAmount() + deliveryFee)}
               </b>
             </div>
           </div>

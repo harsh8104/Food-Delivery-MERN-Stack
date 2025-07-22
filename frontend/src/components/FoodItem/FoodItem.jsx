@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ id, name, price, description, image }) => {
-  const { cartItems, addToCart, removeFromCart, url } =
+  const { cartItems, addToCart, removeFromCart, url, convertUSDToINR } =
     useContext(StoreContext);
 
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -55,7 +55,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
           <img src={assets.rating_starts} alt="" />
         </div>
         <p className="food-item-desc">{description}</p>
-        <p className="food-item-price">${price}</p>
+        <p className="food-item-price">₹{convertUSDToINR(price)}</p>
       </div>
     </div>
   );

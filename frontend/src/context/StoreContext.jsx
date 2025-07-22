@@ -9,6 +9,11 @@ const StoreContextProvider = (props) => {
   const [avatar, setAvatar] = useState("");
   const [OTP, setOTP] = useState(0);
   const [deliveryFee, setDeliveryFee] = useState(2);
+  const USD_TO_INR_RATE = 20;
+
+  const convertUSDToINR = (usdAmount) => {
+    return Math.round(usdAmount * USD_TO_INR_RATE);
+  };
   const [cartLoading, serCartLoading] = useState(true);
   useEffect(() => {
     async function loadData() {
@@ -30,7 +35,7 @@ const StoreContextProvider = (props) => {
   useEffect(() => {
     if (Object.keys(cartItems).length) serCartLoading(false);
   }, [cartItems]);
-  const url = "https://full-stack-1f9p.onrender.com";
+  const url = "http://localhost:5000";
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
@@ -111,6 +116,7 @@ const StoreContextProvider = (props) => {
     OTP,
     cartLoading,
     serCartLoading,
+    convertUSDToINR,
   };
   return (
     <StoreContext.Provider value={contextValue}>

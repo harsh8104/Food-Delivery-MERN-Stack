@@ -3,15 +3,10 @@ import "./MyOrders.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { assets } from "../../assets/assets";
-import { useNavigate } from "react-router-dom";
 const MyOrders = () => {
   const [data, setData] = useState([]);
-  const { url, token } = useContext(StoreContext);
+  const { url, token, convertUSDToINR } = useContext(StoreContext);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-  const handleOrderTrack = () => {
-    navigate("/track-order");
-  };
   const fetchOrders = async () => {
     const response = await axios.post(
       url + "/api/order/userorders",
@@ -53,16 +48,18 @@ const MyOrders = () => {
                       }
                     })}
                   </p>
-                  <p>${order.amount}.00</p>
+                  <p>₹{convertUSDToINR(order.amount)}.00</p>
                   <p>Items: {order.items.length}</p>
                   <p>
                     <span>&#x25cf;</span>
                     <b>{order.status}</b>
                   </p>
-                  {(order.status === "Food Processing" ||
-                    order.status === "Out for delivery") && (
-                    <button onClick={handleOrderTrack}>Track Order</button>
-                  )}
+                  <div className="order-datetime">
+                    <p>
+                      <strong>Order Date:</strong>{" "}
+                      {new Date(order.date).toLocaleDateString()}
+                    </p>
+                  </div>
                 </div>
               );
             })}
@@ -74,7 +71,7 @@ const MyOrders = () => {
         <div className="main">
           <img src={assets.Empty_Order} alt="" />
           <h2 className="empty-cart-title">
-            Oops!! You don't order anything yet...
+            Oops!! You haven&apos;t ordered anything yet...
           </h2>
           <h4 className="empty-cart-text-one">Make your first order fast!!!</h4>
         </div>

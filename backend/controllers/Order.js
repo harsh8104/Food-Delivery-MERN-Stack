@@ -3,7 +3,7 @@ import user from "../models/User.js";
 import Stripe from "stripe";
 import mailSender from "../util/MailsSender.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET);
-//place-order
+
 const placeOrder = async (req, res) => {
   try {
     const frontend_url = "https://full-stack-frontend-olt1.onrender.com";
@@ -19,24 +19,27 @@ const placeOrder = async (req, res) => {
     });
     const lineItems = req.body.items.map((item) => ({
       price_data: {
-        currency: "usd",
+        currency: "inr",
         product_data: {
           name: item.name,
         },
-        unit_amount: item.price * 100,
+        unit_amount: item.price * 100 * 20,
       },
       quantity: item.quantity,
     }));
-    lineItems.push({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: "Delivery Charges",
+
+    if (req.body.deliveryFee && req.body.deliveryFee > 0) {
+      lineItems.push({
+        price_data: {
+          currency: "inr",
+          product_data: {
+            name: "Delivery Charges",
+          },
+          unit_amount: req.body.deliveryFee * 100 * 20,
         },
-        unit_amount: 200,
-      },
-      quantity: 1,
-    });
+        quantity: 1,
+      });
+    }
 
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
@@ -148,21 +151,25 @@ const verifyOrder = async (req, res) => {
                       <p>Order Date: <strong>${Date(Date.toLocaleString())}
                       </strong></p>
                       <p>Items Ordered:
-                      ${order.items.map((item, index) => {
-                        return `<p>Item ${index + 1}: ${item.name} x ${
-                          item.quantity
-                        } </p>`;
-                      })}
+                      ${order.items
+                        .map((item, index) => {
+                          return `<p>Item ${index + 1}: ${item.name} x ${
+                            item.quantity
+                          } </p>`;
+                        })
+                        .join("")}
                       </p>
 
-                      <p>Total Amount: <strong>$${order.amount}</strong></p>
+                      <p>Total Amount: <strong>₹${
+                        order.amount * 20
+                      }</strong></p>
                   </div>
                   <p>Your order is being processed and will be delivered to you shortly. You can track your order status by visiting your account on our website.</p>
                   <p>If you have any questions or need further assistance, please don't hesitate to contact our customer support team.</p>
                   <p>Thank you for choosing [Quick Byte]!</p>
               </div>
               <div class="email-footer">
-                  <p><a href="https://yourcompanywebsite.com">Visit our website</a> | <a href="https://yourcompanywebsite.com/orders">Track your order</a></p>
+                  <p><a href="https://quickbyte.com">Visit our website</a> | <a href="https://yourcompanywebsite.com/orders">Track your order</a></p>
                   <p>&copy; ${new Date().getFullYear()} [Quick Byte]. All rights reserved.</p>
               </div>
           </div>
@@ -188,7 +195,7 @@ const verifyOrder = async (req, res) => {
 const userOrders = async (req, res) => {
   try {
     console.log(req.userId);
-    const orders = await orderModel.find({ userId: req.userId });
+    const orders = await orderModel.find({ userId: req.userId, payment: true });
     res.json({
       success: true,
       data: orders,
