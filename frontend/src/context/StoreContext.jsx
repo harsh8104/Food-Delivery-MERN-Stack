@@ -35,7 +35,7 @@ const StoreContextProvider = (props) => {
   useEffect(() => {
     if (Object.keys(cartItems).length) serCartLoading(false);
   }, [cartItems]);
-  const url = "http://localhost:5000";
+  const url = "https://full-stack-1f9p.onrender.com";
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
