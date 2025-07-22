@@ -5,30 +5,30 @@ import foodRouter from "./routes/Food.js";
 import userRouter from "./routes/User.js";
 import cartRouter from "./routes/Cart.js";
 import contactRouter from "./routes/Contact.js";
+import adminRouter from "./routes/Admin.js";
 import "dotenv/config";
 import orderRouter from "./routes/Order.js";
-//app config
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-//middlewares
 app.use(express.json());
 app.use(cors());
-// dbConnection
+
 connectDb();
-//Endpoints
+
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/contact", contactRouter);
+app.use("/api/admin", adminRouter);
 app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-//socket.io
+
 
 import { Server } from "socket.io";
 import { createServer } from "http";

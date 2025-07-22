@@ -6,8 +6,22 @@
 }
 .navbar .logo{
     width: max(10%,80px);
-    height: max(2%,10px);
 }
-.navbar .profile{
-    width: 40px;
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.logout-button {
+  padding: 8px 20px;
+  border: 1px solid tomato;
+  border-radius: 5px;
+  background-color: #fff;
+  color: tomato;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.logout-button:hover {
+  background-color: tomato;
+  color: #fff;
 }
