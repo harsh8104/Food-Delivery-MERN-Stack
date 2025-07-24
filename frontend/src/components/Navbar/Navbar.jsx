@@ -56,13 +56,6 @@ const Navbar = ({ setShowLogin }) => {
         >
           Chat with us
         </Link>
-        <Link
-          to="/locate-us"
-          onClick={() => setMenu("Locate")}
-          className={menu === "Locate" ? "active" : ""}
-        >
-          Locate-us
-        </Link>
       </ul>
       <div className="navbar-right">
         <div className="navbar-search-icon">
