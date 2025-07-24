@@ -103,48 +103,48 @@ QuickByte is a comprehensive food delivery solution for restaurant that allows c
 
 ### Application Overview
 
-![Application Screenshot 1](image-1.png)
+![Application Screenshot 1](screenshots/image-1.png)
 _The home page of QuickByte Food Delivery platform for customers_
 
-![Application Screenshot 2](image-2.png)
+![Application Screenshot 2](screenshots/image-2.png)
 _Users can select food items from 8 various categories_
 
 ### Customer Interface
 
-![Customer Interface 1](image-3.png)
+![Customer Interface 1](screenshots/image-3.png)
 _Food items display where users can add items to cart or remove them using the + and - buttons_
 
-![Customer Interface 2](image-4.png)
+![Customer Interface 2](screenshots/image-4.png)
 _Shopping cart page showing all selected items summary, with promo code option for first-time users_
 
-![Customer Interface 3](image-5.png)
+![Customer Interface 3](screenshots/image-5.png)
 _Delivery details form where users enter complete address and contact information for accurate order delivery_
 
-![Customer Interface 4](image-7.png)
+![Customer Interface 4](screenshots/image-7.png)
 _Integrated Stripe payment gateway for secure card payments with necessary payment details_
 
-![Customer Interface 5](image-6.png)
-_My Orders page displaying order history and real-time order status after successful payment_
+![Customer Interface 5](screenshots/image-6.png)
+_My Orders page displaying order history and real-time order status tracking after successful payment_
 
-![Customer Interface 6](image-8.png)
+![Customer Interface 6](screenshots/image-8.png)
 _Customer chat interface for real-time communication with admin support for queries and assistance_
 
-![Customer Interface 7](image-9.png)
+![Customer Interface 7](screenshots/image-9.png)
 _Contact Us page where users can provide feedback or raise queries for customer support_
 
 ### Admin Panel
 
-![Admin Panel 1](image-10.png)
-_Secure admin login panel with role based authentication system_
+![Admin Panel 1](screenshots/image-10.png)
+_Secure admin login panel with role-based authentication system_
 
-![Admin Panel 2](image-11.png)
+![Admin Panel 2](screenshots/image-11.png)
 _Comprehensive admin dashboard with options to add items, view lists, manage orders, and chat with customers_
 
-![Admin Panel 3](image-12.png)
+![Admin Panel 3](screenshots/image-12.png)
 _Add Items page interface for administrators to add new food items to the menu_
 
-![Admin Panel 4](image-13.png)
+![Admin Panel 4](screenshots/image-13.png)
 _Food items management page where administrators can view and remove items from the website_
 
-![Admin Panel 5](image-14.png)
+![Admin Panel 5](screenshots/image-14.png)
 _Admin chat interface for real-time communication with customers to resolve queries and provide support_
