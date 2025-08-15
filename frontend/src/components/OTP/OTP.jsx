@@ -81,7 +81,7 @@ const OTP = ({ data }) => {
           </button>
           <div className="otp-popup-resend">
             <p>
-              Didn't receive the OTP? <span>Resend OTP</span>
+              Didn't receive the OTP? <span>Sorry for inconvenience</span>
             </p>
           </div>
         </form>
